@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvp74j07wkbhk"]
+
+[ext_resource type="PackedScene" uid="uid://7pef1c6hv61k" path="res://* SCENES/Player.tscn" id="1_x85m2"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x85m2"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(27, 0, 0, 0, 27, 0, 0, 0, 27, 0, 0, 0)
+mesh = SubResource("PlaneMesh_x85m2")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_x85m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4141556, 0)
