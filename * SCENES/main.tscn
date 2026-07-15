@@ -1,14 +1,64 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvp74j07wkbhk"]
+[gd_scene load_steps=9 format=3 uid="uid://dvp74j07wkbhk"]
 
 [ext_resource type="PackedScene" uid="uid://7pef1c6hv61k" path="res://* SCENES/Player.tscn" id="1_x85m2"]
 
+[sub_resource type="Gradient" id="Gradient_x85m2"]
+offsets = PackedFloat32Array(0.13986014, 1)
+colors = PackedColorArray(0.053711012, 0.02162316, 0.17173028, 1, 1, 0.96862745, 0.92156863, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i8w0n"]
+gradient = SubResource("Gradient_x85m2")
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_x85m2"]
+rayleigh_coefficient = 1.17
+rayleigh_color = Color(0.29122, 0.50431585, 0.5332227, 1)
+mie_coefficient = 0.001
+mie_color = Color(0.9108632, 0.6700264, 0.49429768, 1)
+
+[sub_resource type="Sky" id="Sky_i8w0n"]
+sky_material = SubResource("PhysicalSkyMaterial_x85m2")
+
+[sub_resource type="Environment" id="Environment_u40ja"]
+background_mode = 2
+background_energy_multiplier = 1.5
+sky = SubResource("Sky_i8w0n")
+sky_rotation = Vector3(0, 5.4681168, 0)
+tonemap_mode = 3
+ssao_enabled = true
+ssao_radius = 0.5
+ssil_enabled = true
+adjustment_enabled = true
+adjustment_saturation = 1.5
+adjustment_color_correction = SubResource("GradientTexture1D_i8w0n")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_x85m2"]
-size = Vector3(15, 1, 15)
+size = Vector3(15, 0.5, 15)
 
 [sub_resource type="BoxMesh" id="BoxMesh_x85m2"]
-size = Vector3(15, 1, 15)
+size = Vector3(15, 0.5, 15)
 
 [node name="main" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_x85m2")]
+transform = Transform3D(-0.8618948, 0, 0.5070872, 0, 1, 0, -0.5070872, 0, -0.8618948, 0.3295468, 1.8669443, -0.075107574)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u40ja")
+
+[node name="DirectionalLight3D_SKY" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.24778564, -0.70421034, 0.6653496, -0.93021435, 0.018990826, 0.36652505, -0.27074626, -0.7097374, -0.6503609, 0, 6.053662, 0)
+light_energy = 20.0
+light_indirect_energy = 1.5
+light_volumetric_fog_energy = 4.0
+sky_mode = 2
+
+[node name="DirectionalLight3D_SUN" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.24778566, -0.7042104, 0.66534966, -0.624372, 0.40904665, 0.6654627, -0.7407847, -0.58031774, -0.33833334, 0, 6.053662, 0)
+light_color = Color(0.82989544, 0.83610433, 0.6535878, 1)
+light_indirect_energy = 1.5
+light_volumetric_fog_energy = 4.0
+shadow_enabled = true
+sky_mode = 1
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -17,11 +67,3 @@ shape = SubResource("BoxShape3D_x85m2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("BoxMesh_x85m2")
-
-[node name="Player" parent="." instance=ExtResource("1_x85m2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3295468, 1.8669443, -0.075107574)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.8933792, 0.4493034, 0, -0.4493034, 0.8933792, 0, 6.053662, 0)
