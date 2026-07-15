@@ -11,6 +11,7 @@ script = ExtResource("1_524rh")
 camera = NodePath("Camera3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transparency = 0.5
 mesh = SubResource("CapsuleMesh_i8w0n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
