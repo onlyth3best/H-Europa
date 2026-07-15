@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8hs0fbufkln8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ywnjd"]
+height = 11.0
+radius = 0.25
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_etjix"]
+top_radius = 0.25
+bottom_radius = 0.3
+height = 11.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_5sctd"]
+size = Vector3(3.5, 0.1, 11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_14f3n"]
+size = Vector3(3.5, 0.1, 11)
+
+[node name="shelfset1" type="Node3D"]
+
+[node name="pole2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pole2"]
+shape = SubResource("CylinderShape3D_ywnjd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pole2"]
+mesh = SubResource("CylinderMesh_etjix")
+
+[node name="pole3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pole3"]
+shape = SubResource("CylinderShape3D_ywnjd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pole3"]
+mesh = SubResource("CylinderMesh_etjix")
+
+[node name="pole7" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, 5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pole7"]
+shape = SubResource("CylinderShape3D_ywnjd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pole7"]
+mesh = SubResource("CylinderMesh_etjix")
+
+[node name="pole8" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3, 5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pole8"]
+shape = SubResource("CylinderShape3D_ywnjd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pole8"]
+mesh = SubResource("CylinderMesh_etjix")
+
+[node name="shelf1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="shelf1"]
+mesh = SubResource("BoxMesh_5sctd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="shelf1"]
+shape = SubResource("BoxShape3D_14f3n")
+
+[node name="shelf2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1.6, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="shelf2"]
+mesh = SubResource("BoxMesh_5sctd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="shelf2"]
+shape = SubResource("BoxShape3D_14f3n")
+
+[node name="shelf3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 4.3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="shelf3"]
+mesh = SubResource("BoxMesh_5sctd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="shelf3"]
+shape = SubResource("BoxShape3D_14f3n")
+
+[node name="shelf4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 6.8000007, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="shelf4"]
+mesh = SubResource("BoxMesh_5sctd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="shelf4"]
+shape = SubResource("BoxShape3D_14f3n")
