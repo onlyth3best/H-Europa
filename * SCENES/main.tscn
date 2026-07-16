@@ -1,11 +1,12 @@
-[gd_scene load_steps=38 format=4 uid="uid://dvp74j07wkbhk"]
+[gd_scene load_steps=43 format=4 uid="uid://dvp74j07wkbhk"]
 
-[ext_resource type="Script" uid="uid://cay61ngpn6mk5" path="res://* SCENES/main.gd" id="1_cjmda"]
+[ext_resource type="Script" uid="uid://cay61ngpn6mk5" path="res://* SCRIPTS/main.gd" id="1_cjmda"]
 [ext_resource type="PackedScene" uid="uid://7pef1c6hv61k" path="res://* SCENES/Player.tscn" id="1_x85m2"]
 [ext_resource type="Texture2D" uid="uid://fjonr0ojhiaa" path="res://* FILES/Models/low-poly_psx_style_garage_doors_pack/textures/Garage_Doors_baseColor.png" id="2_i8w0n"]
 [ext_resource type="PackedScene" uid="uid://dguukfci5bwt3" path="res://* FILES/Models/red_button/scene.gltf" id="3_busus"]
 [ext_resource type="PackedScene" uid="uid://b8hs0fbufkln8" path="res://* SCENES/shelfset1.tscn" id="3_u40ja"]
-[ext_resource type="Script" uid="uid://dqyvxhp7gwg6m" path="res://* SCENES/button.gd" id="4_sqipc"]
+[ext_resource type="PackedScene" uid="uid://b7lemp3rcrix0" path="res://* FILES/Models/hanging_industrial_lamp_1k.gltf/hanging_industrial_lamp_1k.gltf" id="4_n84p2"]
+[ext_resource type="Script" uid="uid://dqyvxhp7gwg6m" path="res://* SCRIPTS/button.gd" id="4_sqipc"]
 [ext_resource type="FontFile" uid="uid://74wibw1jn5op" path="res://* FILES/Misc/perfect_dos_vga_437/Perfect DOS VGA 437 Win.ttf" id="6_gr1gh"]
 
 [sub_resource type="Gradient" id="Gradient_x85m2"]
@@ -54,6 +55,96 @@ size = Vector3(0.2, 7, 7)
 
 [sub_resource type="BoxMesh" id="BoxMesh_busus"]
 size = Vector3(0.2, 7, 7)
+
+[sub_resource type="Animation" id="Animation_x73o3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("walldoor1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.519, 2.648, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("walldoor2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3.581, 2.648, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_n84p2"]
+resource_name = "doorclose"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("walldoor1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-9.519, 2.648, 7), Vector3(-3.519, 2.648, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("walldoor2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(9.581, 2.648, 7), Vector3(3.581, 2.648, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_cf7q6"]
+resource_name = "dooropen"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("walldoor1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-3.519, 2.648, 7), Vector3(-9.519, 2.648, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("walldoor2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(3.581, 2.648, 7), Vector3(9.581, 2.648, 7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0aop3"]
+_data = {
+&"RESET": SubResource("Animation_x73o3"),
+&"doorclose": SubResource("Animation_n84p2"),
+&"dooropen": SubResource("Animation_cf7q6")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_busus"]
 size = Vector3(0.65, 3.75, 15)
@@ -209,23 +300,30 @@ shape = SubResource("BoxShape3D_i8w0n")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="home/wall3"]
 mesh = SubResource("BoxMesh_u40ja")
 
-[node name="wall4" type="StaticBody3D" parent="home"]
+[node name="doorwalls" type="Node3D" parent="home"]
+
+[node name="walldoor1" type="StaticBody3D" parent="home/doorwalls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.519, 2.648, 7)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="home/wall4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="home/doorwalls/walldoor1"]
 shape = SubResource("BoxShape3D_u40ja")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="home/wall4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="home/doorwalls/walldoor1"]
 mesh = SubResource("BoxMesh_busus")
 
-[node name="wall5" type="StaticBody3D" parent="home"]
+[node name="walldoor2" type="StaticBody3D" parent="home/doorwalls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.581, 2.648, 7)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="home/wall5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="home/doorwalls/walldoor2"]
 shape = SubResource("BoxShape3D_u40ja")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="home/wall5"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="home/doorwalls/walldoor2"]
 mesh = SubResource("BoxMesh_busus")
+
+[node name="AnimationPlayer_WALLDOOR" type="AnimationPlayer" parent="home/doorwalls"]
+libraries = {
+&"": SubResource("AnimationLibrary_0aop3")
+}
 
 [node name="roofwall1" type="StaticBody3D" parent="home"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.08141422, 7.847968, -5.8)
@@ -268,6 +366,9 @@ transform = Transform3D(-4.304731e-08, 0.9848077, -0.17364813, -7.590403e-09, 0.
 mesh = SubResource("ArrayMesh_x73o3")
 skeleton = NodePath("")
 
+[node name="hanging_industrial_lamp_1k" parent="home" instance=ExtResource("4_n84p2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.7999997, 2)
+
 [node name="button+stand" type="Node3D" parent="home"]
 
 [node name="button_stand" type="StaticBody3D" parent="home/button+stand"]
@@ -299,15 +400,24 @@ font = ExtResource("6_gr1gh")
 font_size = 21
 outline_size = 5
 
-[node name="SpotLight3D" type="SpotLight3D" parent="home"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 7, 2)
+[node name="button2" parent="home/button+stand" instance=ExtResource("3_busus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 2)
+
+[node name="MainSpotlight" type="SpotLight3D" parent="home"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 5.5, 2)
 light_color = Color(0.5128567, 0.94290745, 0.69279975, 1)
 light_energy = 3.7
 spot_range = 17.0
 spot_angle = 23.0
 
-[node name="button" parent="home" instance=ExtResource("3_busus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 2)
+[node name="MainSpotlight2" type="SpotLight3D" parent="home"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 4.5, 2)
+light_color = Color(0.5128567, 0.94290745, 0.69279975, 1)
+light_energy = 3.7
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 1.5
+spot_angle = 23.0
 
 [node name="tutorial" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)

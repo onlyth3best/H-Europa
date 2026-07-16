@@ -15,10 +15,10 @@ var rotation_y := 0
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
-		
+	#testing	
 	if Input.is_action_just_pressed("activate"):
 		activate()
-		
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
