@@ -1,9 +1,12 @@
-[gd_scene load_steps=35 format=4 uid="uid://dvp74j07wkbhk"]
+[gd_scene load_steps=38 format=4 uid="uid://dvp74j07wkbhk"]
 
+[ext_resource type="Script" uid="uid://cay61ngpn6mk5" path="res://* SCENES/main.gd" id="1_cjmda"]
 [ext_resource type="PackedScene" uid="uid://7pef1c6hv61k" path="res://* SCENES/Player.tscn" id="1_x85m2"]
 [ext_resource type="Texture2D" uid="uid://fjonr0ojhiaa" path="res://* FILES/Models/low-poly_psx_style_garage_doors_pack/textures/Garage_Doors_baseColor.png" id="2_i8w0n"]
 [ext_resource type="PackedScene" uid="uid://dguukfci5bwt3" path="res://* FILES/Models/red_button/scene.gltf" id="3_busus"]
 [ext_resource type="PackedScene" uid="uid://b8hs0fbufkln8" path="res://* SCENES/shelfset1.tscn" id="3_u40ja"]
+[ext_resource type="Script" uid="uid://dqyvxhp7gwg6m" path="res://* SCENES/button.gd" id="4_sqipc"]
+[ext_resource type="FontFile" uid="uid://74wibw1jn5op" path="res://* FILES/Misc/perfect_dos_vga_437/Perfect DOS VGA 437 Win.ttf" id="6_gr1gh"]
 
 [sub_resource type="Gradient" id="Gradient_x85m2"]
 offsets = PackedFloat32Array(0.13986014, 1)
@@ -137,6 +140,7 @@ size = Vector3(43, 0.5, 25)
 size = Vector3(43, 0.5, 25)
 
 [node name="main" type="Node"]
+script = ExtResource("1_cjmda")
 
 [node name="Player" parent="." instance=ExtResource("1_x85m2")]
 transform = Transform3D(-0.8618948, 0, 0.5070872, 0, 1, 0, -0.5070872, 0, -0.8618948, 3.329547, 1.8669443, -0.075107574)
@@ -146,7 +150,7 @@ environment = SubResource("Environment_u40ja")
 
 [node name="DirectionalLight3D_SKY" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.24778564, -0.70421034, 0.6653496, -0.93021435, 0.018990826, 0.36652505, -0.27074626, -0.7097374, -0.6503609, 0, 6.053662, 0)
-light_energy = 20.0
+light_energy = 12.85
 light_indirect_energy = 1.5
 light_volumetric_fog_energy = 4.0
 sky_mode = 2
@@ -224,7 +228,7 @@ shape = SubResource("BoxShape3D_u40ja")
 mesh = SubResource("BoxMesh_busus")
 
 [node name="roofwall1" type="StaticBody3D" parent="home"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.08141422, 7.947968, -5.8)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.08141422, 7.847968, -5.8)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="home/roofwall1"]
 shape = SubResource("BoxShape3D_busus")
@@ -277,6 +281,7 @@ mesh = SubResource("CylinderMesh_i8w0n")
 
 [node name="button" type="Area3D" parent="home/button+stand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
+script = ExtResource("4_sqipc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="home/button+stand/button"]
 shape = SubResource("SphereShape3D_x85m2")
@@ -284,6 +289,15 @@ shape = SubResource("SphereShape3D_x85m2")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="home/button+stand/button"]
 transparency = 0.75
 mesh = SubResource("SphereMesh_i8w0n")
+
+[node name="InteractText" type="Label3D" parent="home/button+stand/button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5999999, 0)
+visible = false
+billboard = 1
+text = "Press E to interact"
+font = ExtResource("6_gr1gh")
+font_size = 21
+outline_size = 5
 
 [node name="SpotLight3D" type="SpotLight3D" parent="home"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 7, 2)
@@ -384,11 +398,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 3, -1)
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="Label" type="Label" parent="Node2D"]
+[node name="Crosshair" type="Label" parent="Node2D"]
 offset_right = 1152.0
 offset_bottom = 648.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("6_gr1gh")
 theme_override_font_sizes/font_size = 21
 text = "x"
 horizontal_alignment = 1

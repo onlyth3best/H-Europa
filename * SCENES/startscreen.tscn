@@ -29,16 +29,34 @@ position = Vector2(283, 297)
 scale = Vector2(3.1199975, 3.1199975)
 texture = ExtResource("1_0hxnh")
 
-[node name="Label" type="Label" parent="."]
+[node name="title2" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 507.0
-offset_top = -52.0
-offset_right = 1083.0
-offset_bottom = 596.0
+offset_left = 510.0
+offset_top = -50.0
+offset_right = 1086.0
+offset_bottom = 598.0
+theme_override_colors/default_color = Color(1, 0.15294118, 0.011764706, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("2_sf7qq")
-theme_override_font_sizes/font_size = 37
+theme_override_fonts/normal_font = ExtResource("2_sf7qq")
+theme_override_font_sizes/normal_font_size = 37
+bbcode_enabled = true
+text = "FRAGILE:
+handle with scare!"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 506.0
+offset_top = -53.0
+offset_right = 1082.0
+offset_bottom = 595.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("2_sf7qq")
+theme_override_font_sizes/normal_font_size = 37
+bbcode_enabled = true
 text = "FRAGILE:
 handle with scare!"
 horizontal_alignment = 2
@@ -53,19 +71,37 @@ script = ExtResource("3_0h43o")
 [node name="Label1" type="Label" parent="Scroller"]
 custom_minimum_size = Vector2(1152, 0)
 layout_mode = 0
+offset_left = -34.0
 offset_top = 625.0
-offset_right = 1152.0
+offset_right = 1176.0
 offset_bottom = 648.0
+theme_override_colors/font_color = Color(0.851865, 0.94287455, 0.8862898, 1)
 theme_override_fonts/font = ExtResource("5_0h43o")
 theme_override_font_sizes/font_size = 17
-text = "made with <3 by onlyth3best"
+text = "                                                made with <3 by onlyth3best"
 
 [node name="Label2" type="Label" parent="Scroller"]
 custom_minimum_size = Vector2(1152, 0)
 layout_mode = 0
+offset_left = -34.0
 offset_top = 625.0
-offset_right = 1152.0
+offset_right = 1176.0
 offset_bottom = 648.0
+theme_override_colors/font_color = Color(0.9650032, 0.8602658, 0.8603244, 1)
 theme_override_fonts/font = ExtResource("5_0h43o")
 theme_override_font_sizes/font_size = 17
-text = "made with <3 by onlyth3best"
+text = "speedrun in a few bare-slept nights with an unfortunate lack of caffeine"
+
+[node name="splashscreen_TO-DO_createAscene" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 964.0
+offset_top = 549.0
+offset_right = 964.0
+offset_bottom = 549.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.42029446, 0.44508415, 0.26806515, 1)

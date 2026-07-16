@@ -1,6 +1,6 @@
 extends Control
 
-@export var speed := 77.0
+@export var speed := 217.0
 
 @onready var label_a := $Label1
 @onready var label_b := $Label2

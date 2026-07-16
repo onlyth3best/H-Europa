@@ -4,6 +4,10 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 3.5
 
 @export var camera : Camera3D
+@onready var raycast : RayCast3D = $Camera3D/InteractionRay
+var current_interactable = null
+
+var cursor_locked = true
 var mouse_sensitivity := 0.1
 var rotation_x := 0
 var rotation_y := 0
@@ -11,7 +15,10 @@ var rotation_y := 0
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
-
+		
+	if Input.is_action_just_pressed("activate"):
+		activate()
+		
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -36,6 +43,9 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+	# testing…
+	check_hover_collision()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -46,3 +56,29 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		rotation_degrees.y = rotation_y
 		camera.rotation_degrees.x = rotation_x
+
+#testing…
+func check_hover_collision():
+	if raycast.is_colliding():
+		var hover_collider = raycast.get_collider()
+		if hover_collider and is_instance_valid(hover_collider) and hover_collider.has_method("interact") and hover_collider.has_method("show_prompt"):
+			if current_interactable != hover_collider:
+				if current_interactable:
+					current_interactable.hide_prompt()
+				current_interactable = hover_collider
+				current_interactable.show_prompt()
+		else:
+			hide_current_prompt()
+	else:
+		hide_current_prompt()
+
+func hide_current_prompt():
+	if current_interactable:
+		current_interactable.hide_prompt()
+		current_interactable = null
+
+func activate():
+	var hit = raycast.get_collider()
+	if cursor_locked and raycast.is_colliding():
+		if hit and hit.has_method("interact"):
+			hit.interact()
