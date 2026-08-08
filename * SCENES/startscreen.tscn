@@ -71,7 +71,7 @@ script = ExtResource("3_0h43o")
 [node name="Label1" type="Label" parent="Scroller"]
 custom_minimum_size = Vector2(1152, 0)
 layout_mode = 0
-offset_left = -34.0
+offset_left = -168.0
 offset_top = 625.0
 offset_right = 1176.0
 offset_bottom = 648.0
@@ -83,7 +83,7 @@ text = "                                                made with <3 by onlyth3b
 [node name="Label2" type="Label" parent="Scroller"]
 custom_minimum_size = Vector2(1152, 0)
 layout_mode = 0
-offset_left = -34.0
+offset_left = -157.0
 offset_top = 625.0
 offset_right = 1176.0
 offset_bottom = 648.0
