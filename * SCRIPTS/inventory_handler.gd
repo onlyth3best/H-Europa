@@ -1,23 +1,24 @@
 extends Node
 
-@onready var inventory = get_tree().current_scene.get_node("../Inventory.tscn")
-
-@onready var S1 = inventory.getnode($Panel/VBoxContainer/Slot1/Slot1Text)
-@onready var S2 = inventory.getnode($Panel/VBoxContainer/Slot2/Slot1Text)
-@onready var S3 = inventory.getnode($Panel/VBoxContainer/Slot3/Slot1Text)
-@onready var S4 = inventory.getnode($Panel/VBoxContainer/Slot4/Slot1Text)
-@onready var S5 = inventory.getnode($Panel/VBoxContainer/Slot5/Slot1Text)
-@onready var S6 = inventory.getnode($Panel/VBoxContainer/Slot6/Slot1Text)
-@onready var S7 = inventory.getnode($Panel/VBoxContainer/Slot7/Slot1Text)
+@onready var S1 = null
+@onready var S2 = null
+@onready var S3 = null
+@onready var S4 = null
+@onready var S5 = null
+@onready var S6 = null
+@onready var S7 = null
 
 var freeslots = []
 var occupiedslots = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	freeslots = [S1, S2, S3, S4, S5, S6, S7]
+	pass
 
 func _add_item(item_name: String):
+	if freeslots.is_empty():
+		print("Inventory is full!")
+		return
 	var thechosenone = freeslots.pop_front()
 	thechosenone.text = item_name
 	occupiedslots.append(thechosenone)
