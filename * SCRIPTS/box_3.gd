@@ -4,6 +4,7 @@ extends Area3D
 
 func interact():
 	print("you picked up this box!!")
+	InventoryHandler._add_item("A Mysterious Box")
 	queue_free() # TO DELETE
 	
 func show_prompt():

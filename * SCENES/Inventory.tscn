@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkhwgs4e3kc7n"]
+[gd_scene load_steps=7 format=3 uid="uid://bkhwgs4e3kc7n"]
 
+[ext_resource type="Script" uid="uid://bc78isuxk47qr" path="res://* SCRIPTS/inventory_handler.gd" id="1_d0y1t"]
 [ext_resource type="FontFile" uid="uid://74wibw1jn5op" path="res://* FILES/Misc/perfect_dos_vga_437/Perfect DOS VGA 437 Win.ttf" id="1_hb0tv"]
 [ext_resource type="FontFile" uid="uid://bv2rlfe1s3opa" path="res://* FILES/Misc/perfect_dos_vga_437/Perfect DOS VGA 437.ttf" id="2_6nbai"]
 
@@ -8,18 +9,27 @@ bg_color = Color(0, 0, 0, 0.29411766)
 corner_radius_top_right = 7
 corner_radius_bottom_left = 7
 
+[sub_resource type="Theme" id="Theme_d0y1t"]
+default_font = ExtResource("1_hb0tv")
+default_font_size = 14
+
 [sub_resource type="LabelSettings" id="LabelSettings_g3726"]
 font = ExtResource("1_hb0tv")
 font_size = 17
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Theme" id="Theme_d0y1t"]
-default_font = ExtResource("1_hb0tv")
-default_font_size = 14
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Panel" type="Panel"]
+[node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(135, 264)
+layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -33,20 +43,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_114s7")
 
-[node name="Inv_Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -48.0
-offset_top = 8.0
-offset_right = 48.0
-offset_bottom = 31.0
-grow_horizontal = 2
-text = "INVENTORY:"
-label_settings = SubResource("LabelSettings_g3726")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -60,18 +57,19 @@ offset_bottom = 126.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 7
+script = ExtResource("1_d0y1t")
 
-[node name="Slot1" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Slot1" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="#" type="Label" parent="VBoxContainer/Slot1"]
+[node name="#" type="Label" parent="Panel/VBoxContainer/Slot1"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.7254902)
 theme_override_fonts/font = ExtResource("2_6nbai")
 text = "1"
 
-[node name="Slot1Text" type="RichTextLabel" parent="VBoxContainer/Slot1"]
+[node name="Slot1Text" type="RichTextLabel" parent="Panel/VBoxContainer/Slot1"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -81,17 +79,17 @@ bbcode_enabled = true
 text = "[empty]"
 vertical_alignment = 1
 
-[node name="Slot2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Slot2" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="#" type="Label" parent="VBoxContainer/Slot2"]
+[node name="#" type="Label" parent="Panel/VBoxContainer/Slot2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.7254902)
 theme_override_fonts/font = ExtResource("2_6nbai")
 text = "2"
 
-[node name="Slot1Text" type="RichTextLabel" parent="VBoxContainer/Slot2"]
+[node name="Slot2Text" type="RichTextLabel" parent="Panel/VBoxContainer/Slot2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -101,17 +99,17 @@ bbcode_enabled = true
 text = "[empty]"
 vertical_alignment = 1
 
-[node name="Slot3" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Slot3" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="#" type="Label" parent="VBoxContainer/Slot3"]
+[node name="#" type="Label" parent="Panel/VBoxContainer/Slot3"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.7254902)
 theme_override_fonts/font = ExtResource("2_6nbai")
 text = "3"
 
-[node name="Slot1Text" type="RichTextLabel" parent="VBoxContainer/Slot3"]
+[node name="Slot1Text" type="RichTextLabel" parent="Panel/VBoxContainer/Slot3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -121,17 +119,17 @@ bbcode_enabled = true
 text = "[empty]"
 vertical_alignment = 1
 
-[node name="Slot4" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Slot4" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="#" type="Label" parent="VBoxContainer/Slot4"]
+[node name="#" type="Label" parent="Panel/VBoxContainer/Slot4"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.7254902)
 theme_override_fonts/font = ExtResource("2_6nbai")
 text = "4"
 
-[node name="Slot1Text" type="RichTextLabel" parent="VBoxContainer/Slot4"]
+[node name="Slot1Text" type="RichTextLabel" parent="Panel/VBoxContainer/Slot4"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -141,17 +139,17 @@ bbcode_enabled = true
 text = "[empty]"
 vertical_alignment = 1
 
-[node name="Slot5" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Slot5" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="#" type="Label" parent="VBoxContainer/Slot5"]
+[node name="#" type="Label" parent="Panel/VBoxContainer/Slot5"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.7254902)
 theme_override_fonts/font = ExtResource("2_6nbai")
 text = "5"
 
-[node name="Slot1Text" type="RichTextLabel" parent="VBoxContainer/Slot5"]
+[node name="Slot1Text" type="RichTextLabel" parent="Panel/VBoxContainer/Slot5"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -161,17 +159,17 @@ bbcode_enabled = true
 text = "[empty]"
 vertical_alignment = 1
 
-[node name="Slot6" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Slot6" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="#" type="Label" parent="VBoxContainer/Slot6"]
+[node name="#" type="Label" parent="Panel/VBoxContainer/Slot6"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.7254902)
 theme_override_fonts/font = ExtResource("2_6nbai")
 text = "6"
 
-[node name="Slot1Text" type="RichTextLabel" parent="VBoxContainer/Slot6"]
+[node name="Slot1Text" type="RichTextLabel" parent="Panel/VBoxContainer/Slot6"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -181,17 +179,17 @@ bbcode_enabled = true
 text = "[empty]"
 vertical_alignment = 1
 
-[node name="Slot7" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Slot7" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="#" type="Label" parent="VBoxContainer/Slot7"]
+[node name="#" type="Label" parent="Panel/VBoxContainer/Slot7"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.7254902)
 theme_override_fonts/font = ExtResource("2_6nbai")
 text = "7"
 
-[node name="Slot1Text" type="RichTextLabel" parent="VBoxContainer/Slot7"]
+[node name="Slot1Text" type="RichTextLabel" parent="Panel/VBoxContainer/Slot7"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -200,3 +198,17 @@ theme_override_colors/default_color = Color(1, 1, 1, 0.5686275)
 bbcode_enabled = true
 text = "[empty]"
 vertical_alignment = 1
+
+[node name="Inv_Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -556.0
+offset_top = 8.0
+offset_right = -460.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 12
+text = "(I) INVENTORY:"
+label_settings = SubResource("LabelSettings_g3726")

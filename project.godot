@@ -14,6 +14,10 @@ config/name="EUROPA"
 run/main_scene="uid://dvp74j07wkbhk"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 
+[autoload]
+
+InventoryHandler="*res://* SCRIPTS/inventory_handler.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"
