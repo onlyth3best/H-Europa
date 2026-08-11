@@ -699,3 +699,7 @@ vertical_alignment = 1
 
 [node name="Control" parent="Node2D" instance=ExtResource("13_g3726")]
 layout_mode = 1
+offset_left = 9.0
+offset_top = 42.0
+offset_right = 9.0
+offset_bottom = 42.0

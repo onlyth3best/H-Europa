@@ -13,8 +13,6 @@ var rotation_x := 0
 var rotation_y := 0
 
 func _process(_delta):
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
 	#testing	
 	if Input.is_action_just_pressed("activate"):
 		activate()
